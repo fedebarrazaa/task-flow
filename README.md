@@ -1,3 +1,3 @@
-# En desarrollo... 
+**En desarrollo...**
 
-# Stack hasta el momento: React, Typescript, Supabase, CSS y Vercel 
+**Stack hasta el momento: React, Typescript, Supabase, CSS y Vercel**
