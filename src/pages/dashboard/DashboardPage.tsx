@@ -32,12 +32,12 @@ export function DesingDashboard(){
     }
     return(
         <section className={style.section_dashboard}> 
-            <header>  
+            <header className={style.header_desing}>  
                 <h1>{name ?? 'Cargando..'}</h1>
                 <button 
                 type="submit"
                 onClick={handleLogout}
-                className={style.boton}
+                className={style.header_boton}
                 >Salir</button>
             </header>
 
