@@ -7,13 +7,12 @@ import { useNavigate } from 'react-router-dom';
 export function DesingDashboard(){
     const [name, setName] = useState<string| null>(null); //GUARDO LOS DATOS DEL USUARIO
     const navigate = useNavigate(); //DERIGIRE A LA PAGINA QUE QUIERA 
-   
     //LOGICA PARA MOSTRAR EL NOMBRE DEL USUARIO
     useEffect(()=> {
         const checkUser = async() => {
-        const {data} = await supabase.auth.getUser({})
-        if(data.user.user_metadata.full_name) {
-            setName(data.user.user_metadata.full_name)
+        const {data} = await supabase.auth.getSession({})
+        if(data.session) {
+            setName(data.session.user.user_metadata.full_name)
         } else {
             setName(null)
         }
@@ -21,7 +20,7 @@ export function DesingDashboard(){
      checkUser()
     },[])
     
-    //LOGICA PARA LE BOTON SALIR Y VOLVER A LA PAGE PRINCIPAL
+    //LOGICA PARA EL BOTON SALIR Y VOLVER A LA PAGE PRINCIPAL
     const handleLogout = async() => {
         const {error} = await supabase.auth.signOut({})
         if (error) {
@@ -30,6 +29,27 @@ export function DesingDashboard(){
             navigate('/')
         }
     }
+
+    //LOGICA PARA TABLEROS 
+
+    const [boards, setBoards] = useState([]) //GUARDA LA LISTA DE TABLEROS, EMPIEZA VACIO XQ NO TODAVIA NO BUSCA NADA
+
+    useEffect(() => {
+        const tableCreate = async() => {
+         const { data: sessionData } = await supabase.auth.getSession() //PREGUNTA ¿QUIEN ESTA LOGUEADO? Y SE GUARDA EN sessionData.
+         if (sessionData.session) { //VERIFICA QUE HAY UNA SESION ACTIVA ANTES DE SEGUIR
+            const userId = sessionData.session.user.id
+            const { data } = await supabase.from('boards').select('*').eq('user_id', userId)
+            if (data) {
+                setBoards(data)
+            }
+        }
+    } 
+        tableCreate();
+    },[])
+
+
+
     return(
         <section className={style.section_dashboard}> 
             <header className={style.header_desing}>  
