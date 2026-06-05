@@ -31,9 +31,7 @@ export function DesingDashboard(){
     }
 
     //LOGICA PARA TABLEROS 
-
     const [boards, setBoards] = useState([]) //GUARDA LA LISTA DE TABLEROS, EMPIEZA VACIO XQ NO TODAVIA NO BUSCA NADA
-
     useEffect(() => {
         const tableCreate = async() => {
          const { data: sessionData } = await supabase.auth.getSession() //PREGUNTA ¿QUIEN ESTA LOGUEADO? Y SE GUARDA EN sessionData.
@@ -48,6 +46,23 @@ export function DesingDashboard(){
         tableCreate();
     },[])
 
+    //LOGICA CREACION DEL NUEVO DE TABLERO QUE VOY A AGREGAR 
+    const [boardName, setboardName] = useState(''); //PARA GUARDAR EL NOMBRE DEL NUEVO TABLERO
+
+    const handleCreateBoard = async(e: React.FormEvent<HTMLFormElement>) => { 
+        e.preventDefault();
+        const {data:sessionData} = await supabase.auth.getSession()
+        if (sessionData.session) {
+            const userId = sessionData.session.user.id
+            const { error } = await supabase.from('boards').insert({ name: boardName, user_id: userId })
+        if (error) {
+           console.log('Error:', error.message)
+        } else { 
+            setboardName('')
+        }
+        }
+        
+    }
 
 
     return(
@@ -60,6 +75,22 @@ export function DesingDashboard(){
                 className={style.header_boton}
                 >Salir</button>
             </header>
+
+            <section className={style.section_desing}>
+                <form onSubmit={handleCreateBoard}> 
+                   <button
+                   type="submit"
+                   className={style.section_boton}>+</button> 
+
+                    <input 
+                    value={boardName}
+                    type="text"
+                    className={style.section_input}
+                    onChange={(e) => setboardName(e.target.value)}></input>
+
+                </form>
+                
+            </section>
 
         </section>
         
