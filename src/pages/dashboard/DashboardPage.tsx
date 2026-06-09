@@ -47,7 +47,7 @@ export function DesingDashboard(){
             const { data } = await supabase.from('boards').select('*').eq('user_id', userId)
             if (data) {
                 setBoards(data)
-            }
+            } 
         }
     } 
         tableCreate();
@@ -61,11 +61,12 @@ export function DesingDashboard(){
         const {data:sessionData} = await supabase.auth.getSession()
         if (sessionData.session) {
             const userId = sessionData.session.user.id
-            const { error } = await supabase.from('boards').insert({ name: boardName, user_id: userId })
+            const { error, data: nuevoTablero } = await supabase.from('boards').insert({ name: boardName, user_id: userId }).select()
         if (error) {
            console.log('Error:', error.message)
         } else { 
             setboardName('')
+            setBoards([...boards, nuevoTablero[0]]) //CREA EL TABLERO PARA APARECER EN PANTALLA
         }
         }
         
