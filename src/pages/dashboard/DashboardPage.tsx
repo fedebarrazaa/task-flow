@@ -3,6 +3,13 @@ import style from './dashboard.module.css' //import css
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 
+//INTERFAZ PARA USAR EN EL .map() y MODIFICACION DE LA LINEA 34 DEL useState
+  interface Board {
+        id: string,
+        name: string, 
+        user_id: string, 
+        created_at: string, 
+    }
 
 export function DesingDashboard(){
     const [name, setName] = useState<string| null>(null); //GUARDO LOS DATOS DEL USUARIO
@@ -31,7 +38,7 @@ export function DesingDashboard(){
     }
 
     //LOGICA PARA TABLEROS 
-    const [boards, setBoards] = useState([]) //GUARDA LA LISTA DE TABLEROS, EMPIEZA VACIO XQ NO TODAVIA NO BUSCA NADA
+    const [boards, setBoards] = useState<Board[]>([]) //GUARDA LA LISTA DE TABLEROS, EMPIEZA VACIO XQ NO TODAVIA NO BUSCA NADA
     useEffect(() => {
         const tableCreate = async() => {
          const { data: sessionData } = await supabase.auth.getSession() //PREGUNTA ¿QUIEN ESTA LOGUEADO? Y SE GUARDA EN sessionData.
@@ -64,7 +71,6 @@ export function DesingDashboard(){
         
     }
 
-
     return(
         <section className={style.section_dashboard}> 
             <header className={style.header_desing}>  
@@ -80,19 +86,19 @@ export function DesingDashboard(){
                 <form onSubmit={handleCreateBoard}> 
                    <button
                    type="submit"
-                   className={style.section_boton}>+</button> 
-
+                   className={style.section_boton}>+</button>
                     <input 
                     value={boardName}
                     type="text"
                     className={style.section_input}
                     onChange={(e) => setboardName(e.target.value)}></input>
-
                 </form>
-                
+                <ul> 
+                    {boards.map((usuario) => (
+                        <li key={usuario.id}>{usuario.name} </li>
+                    ))}
+                    </ul> 
             </section>
-
         </section>
-        
     )
 }
