@@ -96,7 +96,10 @@ export function DesingDashboard(){
                 </form>
                 <ul> 
                     {boards.map((usuario) => (
-                        <li key={usuario.id}>{usuario.name} </li>
+                        <li 
+                        key={usuario.id}
+                        onClick={() => navigate('/board/' + usuario.id)} //onClick PARA QUE CUANDO HAGA CLICK ES LA LISTA ME MANDE A LA PAGE DE board
+                        >{usuario.name} </li>
                     ))}
                     </ul> 
             </section>
