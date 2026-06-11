@@ -44,6 +44,18 @@ export function BoardPageDesing() {
         }
         checkCard()
     },[row])
+
+    //LOGICA PARA CREAR TARJETAS 
+    const [newCard, setnewCard] = useState('') //GUARDO LOS DATOS POR ESO ESTA VACIO
+    const handleCreateCard  = async(e: React.FormEvent<HTMLFormElement>, columnId: string) => {  //RECIBE EL evento FORM y EL id DE LA COLUMNA DONDE SE VA CREAR 
+        e.preventDefault(); //EVITA QUE EL FORM RECARGUE LA PAGINA AL HACER SUBMIT 
+        const {error} = await supabase.from('cards').insert({title: newCard, column_id: columnId}) //Le decís a Supabase: "insertá una nueva tarjeta con este título y en esta columna". newCard es lo que escribió el usuario, columnId es la columna donde va.
+        if (error) {
+            console.log("error: no se creo nada")
+        } else {
+            setnewCard('')
+        }
+    }
     
     return(
         <div> 
@@ -59,6 +71,12 @@ export function BoardPageDesing() {
                 </li> 
                 ))}
             </ul> 
+           <form onSubmit={(e) => handleCreateCard(e, usuario.id)}>
+                <input type="text" 
+                value={newCard} 
+                onChange={(e) => setnewCard(e.target.value)}></input>
+                <button type="submit"> + </button>
+                </form>
                 </li>
             ))} 
             
