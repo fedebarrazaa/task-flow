@@ -8,7 +8,16 @@ interface Column {
     position: number, 
     board_id: string, 
     created_at: string
+}
 
+interface Cards { 
+    id: string,
+    title: string,
+    description: string, 
+    position: number,
+    column_id: string, 
+    due_date: string,
+    created_at: string
 }
 
 export function BoardPageDesing() {
@@ -23,6 +32,17 @@ export function BoardPageDesing() {
         }
         checkRow()
     },[])
+
+    const [card, setCard] = useState<Cards[]>([]);
+    useEffect(()=> {
+        const checkCard = async() => { 
+            const {data} = await  supabase.from('cards').select('*').in('column_id', row.map(col => col.id))
+                if (data) {
+                    setCard(data)
+                }
+        }
+        checkCard()
+    },[row])
     
     return(
         <div> 
