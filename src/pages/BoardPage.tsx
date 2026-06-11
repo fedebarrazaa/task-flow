@@ -22,7 +22,7 @@ interface Cards {
 
 export function BoardPageDesing() {
     const {id} = useParams(); //LLAMO AL id QUE ESTA EN app.tsx EN EL ROUTER y SE MUESTRA EL id EN LA LINEA 7
-    const [row, setRow] = useState<Column[]>([]); //GUARDA LA LISTA DE TABLEROS, EMPIEZA VACIO XQ NO TODAVIA NO BUSCA NADA
+    const [row, setRow] = useState<Column[]>([]); //GUARDA LA LISTA DE colum, DE LA INTERFACE 
     useEffect(() => {
         const checkRow = async() => {
             const {data} = await supabase.from('columns').select('*').eq('board_id', id) 
@@ -33,7 +33,8 @@ export function BoardPageDesing() {
         checkRow()
     },[])
 
-    const [card, setCard] = useState<Cards[]>([]);
+    //LOGICA PARA MOSTRAR LAS CARDS 
+    const [card, setCard] = useState<Cards[]>([]);//GUARDA LA LISTA DE cards DE LA INTERFACE
     useEffect(()=> {
         const checkCard = async() => { 
             const {data} = await  supabase.from('cards').select('*').in('column_id', row.map(col => col.id))
@@ -47,15 +48,23 @@ export function BoardPageDesing() {
     return(
         <div> 
           <h1> Se agrega esto: {id} </h1>   
-          <ul>
-            {row.map((usuario) => (
+          <ul>{/*COLUMNAS*/}
+            {row.map((usuario) => ( 
                 <li key={usuario.id}>
                     {usuario.title}
-
+                    <ul>  {/*CARDS*/}
+            {card.filter(c => c.column_id === usuario.id).map((tarjetas)=> (
+                <li key={tarjetas.id}> 
+                {tarjetas.title}
+                </li> 
+                ))}
+            </ul> 
                 </li>
             ))} 
-
+            
+            
           </ul>
+          
         </div>
         
     )
