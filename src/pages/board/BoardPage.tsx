@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; //IMPORTO useParams 
-import { supabase } from '../lib/supabase';
+import { supabase } from '../../lib/supabase';
+import style from './board.module.css';
 
 interface Column {
     id: string,
@@ -46,25 +47,26 @@ export function BoardPageDesing() {
     },[row])
 
     //LOGICA PARA CREAR TARJETAS 
-    const [newCard, setnewCard] = useState('') //GUARDO LOS DATOS POR ESO ESTA VACIO
+    const [newCard, setnewCard] = useState<{[key: string]: string}>({}) //LE AGREGO VALOR AL useState: En lugar de guardar un solo string, guardás un objeto donde cada key es el id de una columna y el valor es el texto que escribió el usuario.
     const handleCreateCard  = async(e: React.FormEvent<HTMLFormElement>, columnId: string) => {  //RECIBE EL evento FORM y EL id DE LA COLUMNA DONDE SE VA CREAR 
         e.preventDefault(); //EVITA QUE EL FORM RECARGUE LA PAGINA AL HACER SUBMIT 
-        const {error} = await supabase.from('cards').insert({title: newCard, column_id: columnId}) //Le decís a Supabase: "insertá una nueva tarjeta con este título y en esta columna". newCard es lo que escribió el usuario, columnId es la columna donde va.
+        const {error, data: nuevaTarjeta} = await supabase.from('cards').insert({title: newCard[columnId], column_id: columnId}).select() //Le decís a Supabase: "insertá una nueva tarjeta con este título y en esta columna". newCard es lo que escribió el usuario, columnId es la columna donde va.
         if (error) {
             console.log("error: no se creo nada")
         } else {
-            setnewCard('')
+            setnewCard({...newCard, [columnId]: ''})
+            setCard([...card, nuevaTarjeta[0]])
         }
     }
     
     return(
-        <div> 
+        <div className={style.desing_board}> 
           <h1> Se agrega esto: {id} </h1>   
-          <ul>{/*COLUMNAS*/}
+          <ul className={style.board_column}>{/*COLUMNAS*/}
             {row.map((usuario) => ( 
-                <li key={usuario.id}>
+                <li key={usuario.id} className={style.board_column_edit}>
                     {usuario.title}
-                    <ul>  {/*CARDS*/}
+                    <ul className={style.card_column_edit}>  {/*CARDS*/}
             {card.filter(c => c.column_id === usuario.id).map((tarjetas)=> (
                 <li key={tarjetas.id}> 
                 {tarjetas.title}
@@ -73,8 +75,8 @@ export function BoardPageDesing() {
             </ul> 
            <form onSubmit={(e) => handleCreateCard(e, usuario.id)}>
                 <input type="text" 
-                value={newCard} 
-                onChange={(e) => setnewCard(e.target.value)}></input>
+                value={newCard[usuario.id]} //Le decís al input que muestre el valor que corresponde a esa columna
+                onChange={(e) => setnewCard({...newCard, [usuario.id]: e.target.value})}></input> {/*Cuando el usuario escribe, actualizás solo la key de esa columna sin tocar las demás. El ...newCard copia todo el objeto y [usuario.id]: e.target.value sobreescribe solo esa columna. */}
                 <button type="submit"> + </button>
                 </form>
                 </li>

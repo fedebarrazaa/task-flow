@@ -1,7 +1,7 @@
 import { DesingLoginPage } from './pages/auth/login/LoginPage'
 import { DesingRegisterPage } from './pages/auth/register/RegisterPage'
 import { DesingDashboard } from './pages/dashboard/DashboardPage'
-import { BoardPageDesing } from './pages/BoardPage'
+import { BoardPageDesing } from './pages/board/BoardPage'
 import  ProtectedRoute  from './components/ProtectedRoute'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
