@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; //IMPORTO useParams 
 import { supabase } from '../../lib/supabase';
 import style from './board.module.css';
+import { Link } from 'react-router-dom';
 
 interface Column {
     id: string,
@@ -60,32 +61,44 @@ export function BoardPageDesing() {
     }
     
     return(
-        <div className={style.desing_board}> 
-          <h1> Se agrega esto: {id} </h1>   
+        <section> 
+            <header> 
+                <Link 
+           to="/dashboard"
+           className={style.desing_link}
+           > ⭠ </Link>
+            </header>
+        <div className={style.desing_board}>
           <ul className={style.board_column}>{/*COLUMNAS*/}
             {row.map((usuario) => ( 
-                <li key={usuario.id} className={style.board_column_edit}>
+                <li 
+                key={usuario.id} 
+                className={style.board_column_edit}>
                     {usuario.title}
-                    <ul className={style.card_column_edit}>  {/*CARDS*/}
+                <ul 
+                    className={style.card_column_edit}>  {/*CARDS*/}
             {card.filter(c => c.column_id === usuario.id).map((tarjetas)=> (
-                <li key={tarjetas.id}> 
-                {tarjetas.title}
-                </li> 
-                ))}
-            </ul> 
-           <form onSubmit={(e) => handleCreateCard(e, usuario.id)}>
-                <input type="text" 
-                value={newCard[usuario.id]} //Le decís al input que muestre el valor que corresponde a esa columna
-                onChange={(e) => setnewCard({...newCard, [usuario.id]: e.target.value})}></input> {/*Cuando el usuario escribe, actualizás solo la key de esa columna sin tocar las demás. El ...newCard copia todo el objeto y [usuario.id]: e.target.value sobreescribe solo esa columna. */}
-                <button type="submit"> + </button>
-                </form>
+                   <li 
+                   key={tarjetas.id} 
+                   className={style.card_column_edit_text}>{tarjetas.title}
+                   </li> 
+                   ))}
+                </ul> 
+           <form 
+           className={style.desing_form} 
+           onSubmit={(e) => handleCreateCard(e, usuario.id)}>
+             <input 
+             placeholder='Agregar una tarjeta'
+             type="text" 
+             value={newCard[usuario.id]} //Le decís al input que muestre el valor que corresponde a esa columna
+             onChange={(e) => setnewCard({...newCard, [usuario.id]: e.target.value})}></input> {/*Cuando el usuario escribe, actualizás solo la key de esa columna sin tocar las demás. El ...newCard copia todo el objeto y [usuario.id]: e.target.value sobreescribe solo esa columna. */}
+                <button 
+                type="submit"> + </button>
+            </form>
                 </li>
             ))} 
-            
-            
           </ul>
-          
         </div>
-        
+        </section>
     )
 }
