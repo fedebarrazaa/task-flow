@@ -57,12 +57,20 @@ header {
 @media (min-width: 800px) {
     .desing_board {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 0 auto;
         width: 900px;
     }
 }
+.desing_board_title {
+    background-color: transparent;
+}
 
+@media (min-width: 800px) {
+    .desing_board_title {
+       text-align: center;
+    }
+}
 .board_column {
     background-color: transparent;
     margin: 5px;
@@ -152,3 +160,4 @@ header {
     cursor: pointer;
     color: rgb(138, 43, 226);
 }
+

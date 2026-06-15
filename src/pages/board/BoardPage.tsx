@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'; //IMPORTO useParams
 import { supabase } from '../../lib/supabase';
 import style from './board.module.css';
 import { Link } from 'react-router-dom';
+import { DesingFooter } from '../../components/Footer' //COMPONENTE
 
 interface Column {
     id: string,
@@ -69,6 +70,13 @@ export function BoardPageDesing() {
            > ⭠ </Link>
             </header>
         <div className={style.desing_board}>
+            <div className={style.desing_board_title}> 
+                <h1> Task Board</h1> 
+            <p>
+                Organiza y gestiona tus tareas.
+            </p>
+            </div>
+            
           <ul className={style.board_column}>{/*COLUMNAS*/}
             {row.map((usuario) => ( 
                 <li 
@@ -99,6 +107,10 @@ export function BoardPageDesing() {
             ))} 
           </ul>
         </div>
+        <DesingFooter 
+        title="Task Flow"
+        subtitle="Gestión visual de tareas inspirada en la metodología Kanban."
+        />
         </section>
     )
 }
