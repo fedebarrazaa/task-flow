@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import style from './dashboard.module.css' //import css
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
+import { DesingFooter } from '../../components/Footer'
 
 //INTERFAZ PARA USAR EN EL .map() y MODIFICACION DE LA LINEA 34 DEL useState
   interface Board {
@@ -84,7 +85,7 @@ export function DesingDashboard(){
             </header>
 
             <section className={style.section_desing}>
-                <form onSubmit={handleCreateBoard}> 
+                <form onSubmit={handleCreateBoard} className={style.uno}> 
                    <button
                    type="submit"
                    className={style.section_boton}>+</button>
@@ -94,15 +95,23 @@ export function DesingDashboard(){
                     className={style.section_input}
                     onChange={(e) => setboardName(e.target.value)}></input>
                 </form>
-                <ul> 
+                <ul className={style.desing_ul}> 
                     {boards.map((usuario) => (
-                        <li 
+                        <li
+                        className={style.desing_li}
                         key={usuario.id}
                         onClick={() => navigate('/board/' + usuario.id)} //onClick PARA QUE CUANDO HAGA CLICK ES LA LISTA ME MANDE A LA PAGE DE board
                         >{usuario.name} </li>
                     ))}
                     </ul> 
             </section>
+              <footer> 
+             <DesingFooter 
+        title="Task Flow"
+        subtitle="Gestión visual de tareas inspirada en la metodología Kanban."
+        />
+        </footer>
         </section>
+      
     )
 }

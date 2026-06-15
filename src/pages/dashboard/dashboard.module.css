@@ -9,7 +9,7 @@
 
 .header_desing {
     background-color: transparent;
-    border: 1px solid red;
+    border: 1px solid transparent;
     margin: 10px;
     width: 100%;
     padding: 20px;
@@ -52,4 +52,54 @@
         width: 120px;
         height: 50px;
     }
+}
+
+.uno {
+    background-color: transparent;
+    padding: 5px;
+}
+
+.section_boton { 
+    background-color:white;
+    font-weight: bold;
+    font-family: "Inter", sans-serif;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    width: 30px;
+    cursor: pointer;
+    color: rgb(138, 43, 226);
+    margin-right: 10px;
+}
+.section_input {
+    background-color: white;
+    width: 150px;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    font-family: "Inter", sans-serif;
+}
+
+.section_desing { 
+    background-color: transparent;
+    height: 600px;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+}
+
+.desing_ul {
+    background-color: transparent;
+    border-right: 1px solid rgba(137, 43, 226, 0.11);
+}
+.desing_li {
+    background-color: transparent;
+    margin: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+}
+
+.desing_li:hover {
+    background-color:rgba(137, 43, 226, 0.048);
+    cursor: pointer;
 }
