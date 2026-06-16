@@ -71,6 +71,11 @@
     color: rgb(138, 43, 226);
     margin-right: 10px;
 }
+.section_boton:hover {
+    background-color:rgb(241, 241, 241) ;
+}
+
+
 .section_input {
     background-color: white;
     width: 150px;

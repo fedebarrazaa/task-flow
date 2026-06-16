@@ -4,6 +4,7 @@ import { supabase } from '../../lib/supabase';
 import style from './board.module.css';
 import { Link } from 'react-router-dom';
 import { DesingFooter } from '../../components/Footer' //COMPONENTE
+import { DragDropContext, Droppable, Draggable} from '@hello-pangea/dnd'; //LIBRERIA PARA MOVER LAS CARDS DE UN LADO AL OTRO 
 
 interface Column {
     id: string,
@@ -76,7 +77,7 @@ export function BoardPageDesing() {
                 Organiza y gestiona tus tareas.
             </p>
             </div>
-            
+            <DragDropContext> 
           <ul className={style.board_column}>{/*COLUMNAS*/}
             {row.map((usuario) => ( 
                 <li 
@@ -106,6 +107,7 @@ export function BoardPageDesing() {
                 </li>
             ))} 
           </ul>
+          </DragDropContext>
         </div>
         <DesingFooter 
         title="Task Flow"
