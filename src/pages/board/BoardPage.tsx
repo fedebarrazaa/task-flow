@@ -61,6 +61,10 @@ export function BoardPageDesing() {
             setCard([...card, nuevaTarjeta[0]])
         }
     }
+
+    //LOGICA PARA MOVER LAS CARD
+    
+    const handleDragEnd = 
     
     return(
         <section> 
@@ -77,20 +81,23 @@ export function BoardPageDesing() {
                 Organiza y gestiona tus tareas.
             </p>
             </div>
-            <DragDropContext> 
+
+            <DragDropContext onDragEnd={handleDragEnd}>   
           <ul className={style.board_column}>{/*COLUMNAS*/}
             {row.map((usuario) => ( 
                 <li 
                 key={usuario.id} 
                 className={style.board_column_edit}>
+                    <Droppable droppableId={usuario.id}>
                     {usuario.title}
                 <ul 
                     className={style.card_column_edit}>  {/*CARDS*/}
             {card.filter(c => c.column_id === usuario.id).map((tarjetas)=> (
+                <Draggable draggableId={tarjetas.id}> 
                    <li 
                    key={tarjetas.id} 
                    className={style.card_column_edit_text}>{tarjetas.title}
-                   </li> 
+                   </li> </Draggable>
                    ))}
                 </ul> 
            <form 
@@ -104,10 +111,12 @@ export function BoardPageDesing() {
                 <button 
                 type="submit"> + </button>
             </form>
+            </Droppable>
                 </li>
             ))} 
           </ul>
           </DragDropContext>
+
         </div>
         <DesingFooter 
         title="Task Flow"
