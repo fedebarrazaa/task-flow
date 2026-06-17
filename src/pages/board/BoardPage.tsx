@@ -4,7 +4,7 @@ import { supabase } from '../../lib/supabase';
 import style from './board.module.css';
 import { Link } from 'react-router-dom';
 import { DesingFooter } from '../../components/Footer' //COMPONENTE
-import { DragDropContext, Droppable, Draggable} from '@hello-pangea/dnd'; //LIBRERIA PARA MOVER LAS CARDS DE UN LADO AL OTRO 
+import { DragDropContext, Droppable, Draggable, type DropResult} from '@hello-pangea/dnd'; //LIBRERIA PARA MOVER LAS CARDS DE UN LADO AL OTRO 
 
 interface Column {
     id: string,
@@ -64,7 +64,19 @@ export function BoardPageDesing() {
 
     //LOGICA PARA MOVER LAS CARD
     
-    const handleDragEnd = 
+    const handleDragEnd = async(result: DropResult) => { 
+        const {destination, source} = result
+        if (destination == null) {
+            console.log("error: no se movio")
+        } else if (source.droppableId === destination.droppableId ) {
+            console.log("error")
+        } else { 
+            const cardId = result.draggableId
+            const destinationId= destination.droppableId  
+            await supabase.from('cards').update({ column_id: destinationId }).eq('id', cardId)
+            setCard(card.map(c => c.id === cardId ? {...c, column_id: destinationId} : c))
+        }
+    }
     
     return(
         <section> 
@@ -133,3 +145,9 @@ export function BoardPageDesing() {
         </section>
     )
 }
+
+
+/*<Droppable>, <DragDropContext> y <Draggable> 
+TIENE SU SINTAXIS PROPIA, POR ESO ES QUE SE AGREGA CODIGO UNA 
+IMPLEMENTADO
+*/
