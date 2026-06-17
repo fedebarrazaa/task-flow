@@ -62,21 +62,25 @@ export function DesingDashboard(){
         const {data:sessionData} = await supabase.auth.getSession()
         if (sessionData.session) {
             const userId = sessionData.session.user.id
-            const { error, data: nuevoTablero } = await supabase.from('boards').insert({ name: boardName, user_id: userId }).select()
+            const { error, data: nuevoTablero} = await supabase.from('boards').insert({ name: boardName, user_id: userId }).select()
         if (error) {
            console.log('Error:', error.message)
         } else { 
             setboardName('')
             setBoards([...boards, nuevoTablero[0]]) //CREA EL TABLERO PARA APARECER EN PANTALLA
-        } else {
+            /*PARA QUESE GENEREN NUEVA COLUMNAS AUTOMATICAS 
+            SI AGREGO UNA NUEVA TAREA EN dashboard
+            */
+           if(nuevoTablero && nuevoTablero[0]) {
             const tablero = await supabase.from('columns').insert([
                 {title: 'To Do', position: 1, board_id: nuevoTablero[0].id},
                 {title: 'In Progress', position: 2, board_id: nuevoTablero[0].id},
-                {title: 'Done', position: 3, board_id: nuevoTablero[0].id},
+                {title: 'Done', position: 3, board_id: nuevoTablero[0].id}
             ])
+           }
+            
         }
         }
-        
     }
 
     return(
