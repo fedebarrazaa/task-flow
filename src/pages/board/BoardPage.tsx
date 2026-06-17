@@ -88,18 +88,27 @@ export function BoardPageDesing() {
                 <li 
                 key={usuario.id} 
                 className={style.board_column_edit}>
+                   {usuario.title}
                     <Droppable droppableId={usuario.id}>
-                    {usuario.title}
-                <ul 
+                    {(provided) =>(
+                        <ul ref={provided.innerRef} {...provided.droppableProps}
                     className={style.card_column_edit}>  {/*CARDS*/}
-            {card.filter(c => c.column_id === usuario.id).map((tarjetas)=> (
-                <Draggable draggableId={tarjetas.id}> 
-                   <li 
-                   key={tarjetas.id} 
-                   className={style.card_column_edit_text}>{tarjetas.title}
-                   </li> </Draggable>
+            {card.filter(c => c.column_id === usuario.id).map((tarjetas, index)=> (
+                <Draggable draggableId={tarjetas.id} index={index}>
+                    {(provided) => (
+                        <li 
+                        ref={provided.innerRef} //VA SI o SI CON LIBRERIA DE @hello-pangea/dnd
+                        {...provided.draggableProps} //VA SI o SI CON LIBRERIA DE @hello-pangea/dnd
+                        {...provided.dragHandleProps} //VA SI o SI CON LIBRERIA DE @hello-pangea/dnd
+                        key={tarjetas.id} 
+                        className={style.card_column_edit_text}>{tarjetas.title}
+                        </li>
+                    )} 
+                   </Draggable>
                    ))}
+                   {provided.placeholder}
                 </ul> 
+                    )}
            <form 
            className={style.desing_form} 
            onSubmit={(e) => handleCreateCard(e, usuario.id)}>
@@ -116,7 +125,6 @@ export function BoardPageDesing() {
             ))} 
           </ul>
           </DragDropContext>
-
         </div>
         <DesingFooter 
         title="Task Flow"
