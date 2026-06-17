@@ -68,6 +68,12 @@ export function DesingDashboard(){
         } else { 
             setboardName('')
             setBoards([...boards, nuevoTablero[0]]) //CREA EL TABLERO PARA APARECER EN PANTALLA
+        } else {
+            const tablero = await supabase.from('columns').insert([
+                {title: 'To Do', position: 1, board_id: nuevoTablero[0].id},
+                {title: 'In Progress', position: 2, board_id: nuevoTablero[0].id},
+                {title: 'Done', position: 3, board_id: nuevoTablero[0].id},
+            ])
         }
         }
         

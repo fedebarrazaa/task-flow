@@ -120,7 +120,7 @@ export function BoardPageDesing() {
                    ))}
                    {provided.placeholder}
                 </ul> 
-                    )}
+                    )}</Droppable>
            <form 
            className={style.desing_form} 
            onSubmit={(e) => handleCreateCard(e, usuario.id)}>
@@ -132,7 +132,7 @@ export function BoardPageDesing() {
                 <button 
                 type="submit"> + </button>
             </form>
-            </Droppable>
+            
                 </li>
             ))} 
           </ul>

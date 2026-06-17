@@ -103,11 +103,11 @@ header {
     border-radius: 0.5em;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-weight: bold;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
-}
+    /*transition: transform 0.3s ease, box-shadow 0.3s ease; */
+}/*
 .board_column_edit:hover {
     transform: translateY(-4px);
-}
+}*/
 
 
 
