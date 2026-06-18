@@ -128,7 +128,8 @@
     /*border-right: 1px solid rgba(137, 43, 226, 0.11);*/
 }
 .desing_li {
-    background-color: transparent;
+    color: rgb(49, 2, 94);
+    background-color: rgba(155, 68, 236, 0.192);
     margin: 5px;
     padding: 5px;
     font-family: "Inter", sans-serif;

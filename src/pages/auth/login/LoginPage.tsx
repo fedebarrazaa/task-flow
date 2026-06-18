@@ -53,7 +53,7 @@ export function DesingLoginPage(){
             className={style.desing_pass}></input>
             <input 
             type="submit"
-            value="Ingresa"
+            value="Ingresar"
             className={style.desing_boton}
             ></input> 
             <Link to="/register" className={style.desing_link}>Crear cuenta</Link>
