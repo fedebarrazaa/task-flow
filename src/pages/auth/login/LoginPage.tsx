@@ -30,12 +30,13 @@ export function DesingLoginPage(){
         }
 
     return(
-        <section className={style.desing_section}>
-         <h1 className={style.desing_h1}>Organiza, controla y mira tus tareas desde cualquier lugar</h1>
+        <div className={style.login_container}> 
+            <section className={style.desing_section}>
+         <h1 className={style.desing_h1}>Organiza proyectos, gestiona tareas y mantén el control de tu trabajo.</h1>
          <form className={style.desing_form} onSubmit={handleSubmit}>
             <div> 
                 <p className={style.div_p}>〰️</p>
-                <h1 className={style.div_h1}> Iniciar seccion </h1>
+                <h1 className={style.div_h1}> Iniciar sesión </h1>
                 <h3 className={style.div_h3}>Acceda a sus tareas, notas y proyectos en cualquier momento.</h3>
             </div>
             <input 
@@ -58,5 +59,7 @@ export function DesingLoginPage(){
             <Link to="/register" className={style.desing_link}>Crear cuenta</Link>
          </form>
         </section>
+        </div>
+        
     )
 }

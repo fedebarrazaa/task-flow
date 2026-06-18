@@ -37,7 +37,8 @@ export function DesingRegisterPage(){
 
 
     return (
-        <section className={style.desing_section}>
+        <div className={style.login_container}> 
+            <section className={style.desing_section}>
          {/*<h1 className={style.desing_h1}>Organiza, controla y mira tus tareas desde cualquier lugar</h1>*/}
          <form className={style.desing_form} onSubmit={handleSubmit} >
             <div> 
@@ -79,5 +80,7 @@ export function DesingRegisterPage(){
             <Link to="/" className={style.desing_link}>Volver al inicio</Link>
          </form>
         </section>
+        </div>
+        
     )
 }

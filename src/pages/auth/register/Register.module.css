@@ -1,5 +1,13 @@
 @import '../../../themes//variables.css';
 
+
+.login_container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .desing_section{
     background-color: white;
     border: 1px solid transparent;

@@ -86,7 +86,7 @@ export function DesingDashboard(){
     return(
         <section className={style.section_dashboard}> 
             <header className={style.header_desing}>  
-                <h1>{name ?? 'Cargando..'}</h1>
+                <h1>Hola, {name ?? 'Cargando..'} 👋</h1>
                 <button 
                 type="submit"
                 onClick={handleLogout}
@@ -95,7 +95,8 @@ export function DesingDashboard(){
             </header>
 
             <section className={style.section_desing}>
-                <form onSubmit={handleCreateBoard} className={style.uno}> 
+                <h1 className={style.section_h1}> Seleccioná un tablero o crea uno nuevo.</h1>
+                <form onSubmit={handleCreateBoard} className={style.desing_form}> 
                    <button
                    type="submit"
                    className={style.section_boton}>+</button>
@@ -111,7 +112,7 @@ export function DesingDashboard(){
                         className={style.desing_li}
                         key={usuario.id}
                         onClick={() => navigate('/board/' + usuario.id)} //onClick PARA QUE CUANDO HAGA CLICK ES LA LISTA ME MANDE A LA PAGE DE board
-                        >{usuario.name} </li>
+                        >{usuario.name} 📝</li>
                     ))}
                     </ul> 
             </section>
