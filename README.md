@@ -9,6 +9,9 @@ Clon de Trello desarrollado desde cero como proyecto de portfolio. Una aplicaci�
 ## 📸 Capturas
 
 <!-- pronto -->
+<img width="1919" height="914" alt="task" src="https://github.com/user-attachments/assets/544e0110-738e-42d4-9e6e-02190c1a7ba9" />
+<img width="1901" height="898" alt="task-cuatro" src="https://github.com/user-attachments/assets/8ae91d5c-135b-4db6-b68c-cc2a5b98cc3e" />
+<img width="1902" height="898" alt="task-tres" src="https://github.com/user-attachments/assets/9bb8c770-75f1-40b2-8bfa-019a7ae3d3e6" />
 
 ## ✨ Funcionalidades
 
