@@ -63,7 +63,7 @@ cards
 1. Cloná el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/task-flow.git
+git clone https://github.com/fedebarrazaa/task-flow.git
 cd task-flow
 ```
 
