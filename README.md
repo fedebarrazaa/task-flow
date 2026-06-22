@@ -90,5 +90,4 @@ npm run dev
 
 **Federico Barraza**
 - Portfolio: [fedebarrazaa.github.io/mi-portfolio-react](https://fedebarrazaa.github.io/mi-portfolio-react)
-- LinkedIn: [linkedin.com/in/federicobarraza](https://linkedin.com/in/federicobarraza)
-- Behance: [behance.net/fedeb8](https://behance.net/fedeb8)
+- LinkedIn: [linkedin.com/in/federicobarraza](https://www.linkedin.com/in/federico-barraza/)
