@@ -18,7 +18,7 @@ export function DesingDashboard(){
     //LOGICA PARA MOSTRAR EL NOMBRE DEL USUARIO
     useEffect(()=> {
         const checkUser = async() => {
-        const {data} = await supabase.auth.getSession({})
+        const {data} = await supabase.auth.getSession()
         if(data.session) {
             setName(data.session.user.user_metadata.full_name)
         } else {
@@ -77,6 +77,7 @@ export function DesingDashboard(){
                 {title: 'In Progress', position: 2, board_id: nuevoTablero[0].id},
                 {title: 'Done', position: 3, board_id: nuevoTablero[0].id}
             ])
+            console.log(tablero)
            }
             
         }
