@@ -119,7 +119,7 @@ export function DesingDashboard(){
             </section>
               <footer> 
              <DesingFooter 
-        title="Task Flow"
+        title="Notis Board"
         subtitle="Gestión visual de tareas inspirada en la metodología Kanban."
         />
         </footer>

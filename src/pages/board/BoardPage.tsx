@@ -139,7 +139,7 @@ export function BoardPageDesing() {
           </DragDropContext>
         </div>
         <DesingFooter 
-        title="Task Flow"
+        title="Notis Board"
         subtitle="Gestión visual de tareas inspirada en la metodología Kanban."
         />
         </section>
