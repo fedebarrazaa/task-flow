@@ -9,7 +9,8 @@ export function DesingRegisterPage(){
     const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [succes, setSucces] = useState(false)
+
     const navigate = useNavigate(); //REDIRIGUE A LA PAGINA DASHBOARD
 
      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>  {
@@ -25,19 +26,19 @@ export function DesingRegisterPage(){
             }
         }
     })
-
-    if (error) {
-        console.log("Error:", error.message)
+    if(error) {
+        console.log("Error")
     } else {
-        navigate('/dashboard')
+        setSucces(true)
     }
-
     }
-
-
 
     return (
+        
         <div className={style.login_container}> 
+        {succes ? ( 
+                <div>¡Cuenta creada! Revisá tu email.</div>
+        ) : (
             <section className={style.desing_section}>
          {/*<h1 className={style.desing_h1}>Organiza, controla y mira tus tareas desde cualquier lugar</h1>*/}
          <form className={style.desing_form} onSubmit={handleSubmit} >
@@ -80,6 +81,7 @@ export function DesingRegisterPage(){
             <Link to="/" className={style.desing_link}>Volver al inicio</Link>
          </form>
         </section>
+        )}
         </div>
         
     )
