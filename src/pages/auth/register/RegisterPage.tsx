@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './Register.module.css' //import css
-import { Link, useNavigate } from 'react-router-dom'; //para el router
+import { Link } from 'react-router-dom'; //para el router
 import { supabase } from '../../../lib/supabase';
 
 export function DesingRegisterPage(){
