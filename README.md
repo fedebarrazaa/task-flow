@@ -4,7 +4,7 @@ Clon de Trello desarrollado desde cero como proyecto de portfolio. Una aplicaci�
 
 ## 🚀 Demo
 
-[Ver demo en vivo](#) <!-- pronto -->
+https://notis-board.vercel.app/
 
 ## 📸 Capturas
 
