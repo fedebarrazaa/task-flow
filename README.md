@@ -10,8 +10,9 @@ https://notis-board.vercel.app/
 
 <!-- pronto -->
 <img width="1919" height="914" alt="task" src="https://github.com/user-attachments/assets/544e0110-738e-42d4-9e6e-02190c1a7ba9" />
-<img width="1901" height="898" alt="task-cuatro" src="https://github.com/user-attachments/assets/8ae91d5c-135b-4db6-b68c-cc2a5b98cc3e" />
-<img width="1902" height="898" alt="task-tres" src="https://github.com/user-attachments/assets/9bb8c770-75f1-40b2-8bfa-019a7ae3d3e6" />
+<img width="1903" height="894" alt="notis" src="https://github.com/user-attachments/assets/0d89e4d4-2c97-4c5c-bb0d-c5aaddd2d558" />
+<img width="1901" height="891" alt="notis-dos" src="https://github.com/user-attachments/assets/64cf8611-7029-4e54-854f-3781aa35cf25" />
+
 
 ## ✨ Funcionalidades
 
