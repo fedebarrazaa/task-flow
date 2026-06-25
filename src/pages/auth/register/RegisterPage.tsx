@@ -11,7 +11,7 @@ export function DesingRegisterPage(){
     const [password, setPassword] = useState('');
     const [succes, setSucces] = useState(false)
 
-    const navigate = useNavigate(); //REDIRIGUE A LA PAGINA DASHBOARD
+    //const navigate = useNavigate(); REDIRIGUE A LA PAGINA DASHBOARD
 
      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>  {
         e.preventDefault(); //
