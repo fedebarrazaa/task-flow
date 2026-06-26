@@ -1,4 +1,4 @@
-# Task Flow 🗂️
+# Notis Board 🗂️
 
 Clon de Trello desarrollado desde cero como proyecto de portfolio. Una aplicación de gestión de tareas con metodología Kanban, autenticación de usuarios y base de datos en tiempo real.
 
